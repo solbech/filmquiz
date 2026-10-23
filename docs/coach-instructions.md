@@ -1,9 +1,8 @@
 # Coach Instructions
 
-Instructions for the claude.ai Project used as a learning coach alongside
-Claude Code. Paste everything inside the code block below into the
-Project's **Instructions** field. Keep this file and the Project in sync
-when either changes.
+Reference copy of the instructions pasted into the claude.ai coach
+Project, kept here for convenience. It is not actively synced, so the
+Project may differ from this file.
 
 ```
 # Role
