@@ -123,6 +123,8 @@ that I can identify the movie.
 - [ ] Given a wrong guess, then it is counted toward that participant's
       wrong-guess total for the round (used for the timing penalty and
       aggregate stats), even though it doesn't block further guessing.
+- [ ] Given an unsolved tile, then nothing delivered to the client reveals
+      its answer (see NFR-001).
 
 **Status:** draft
 
@@ -142,6 +144,9 @@ that I get confirmation and details.
       that tile: how many participants have guessed it correctly, and how
       many total wrong attempts have been made on it — not other
       participants' individual guessed text.
+- [ ] Given a guess, then correctness is decided server-side, and the
+      reveal data is delivered only in the response to a guess the server
+      verified as correct (see NFR-001).
 
 **Status:** draft
 
@@ -272,6 +277,38 @@ fix mistakes.
 - [ ] Given an existing round or tile, when an admin edits it (e.g. fixing
       a typo in an accepted answer), then the change applies immediately
       to all participants' future guesses.
+
+**Status:** draft
+
+## Non-Functional Requirements
+
+### NFR-001 Answer secrecy
+The participant's client must never receive anything that reveals a
+tile's **answer** until that tile is solved by that participant (or
+revealed to them by round completion or reveal-on-close). "Answer" means
+the title, accepted variants, composer, premiere year, and original cover
+image. Answer checking happens server-side. Admin screens are out of
+scope.
+
+**Acceptance criteria**
+- [ ] Given an unsolved tile, then no participant-facing response (page
+      HTML, client code bundle, API response, asset URL, or HTTP header)
+      contains its title, any accepted variant, composer, year, or the
+      original cover's file name or URL.
+- [ ] Given an unsolved tile, then the cover the client receives is a
+      server-produced blurred image or a placeholder, not the original
+      image blurred in the browser.
+- [ ] Given an unsolved tile, then the original cover can only be
+      obtained through the response to a correct guess, or for a tile
+      already solved or revealed for that participant.
+- [ ] Given a tile's audio clip, then its URL and file name are opaque
+      identifiers, and the delivered file carries no embedded metadata
+      (e.g. ID3 title, album, artist, composer, comment, or cover art).
+- [ ] Given a submitted guess, then the server decides whether it is
+      correct; the client never receives the correct answer, the
+      variants, or any hash or encoded form of them for comparison.
+- [ ] Given a locked tile (lock-on-close), then the same rules apply as
+      for an unsolved tile.
 
 **Status:** draft
 
