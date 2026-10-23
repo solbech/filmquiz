@@ -1,9 +1,11 @@
 # Film Quiz — Project Guide
 
 ## Purpose
-An online movie quiz web app. A customer (a friend of the product owner) will
-use it to run **live quizzes** as host/showrunner. Players participate in
-real time while the host controls pacing.
+An online film music quiz web app. A customer (a friend of the product
+owner) will use it as host to publish quiz rounds. The quiz is
+**asynchronous, not live**: participants log in and play each round at
+their own pace, across multiple sittings, within the round's time window.
+The host creates and publishes content but does not control pacing.
 
 ## Roles
 - **Product owner / architect (human):** owns requirements, priorities, and
