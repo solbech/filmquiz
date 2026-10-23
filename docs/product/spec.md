@@ -113,9 +113,9 @@ that I can identify the movie.
 - [ ] Given an unsolved tile, when opened, then the participant sees a
       blurred cover (or a question-mark placeholder), a player, and a
       free-text answer field.
-- [ ] Given the tile page, when the participant presses play, then a
-      30-60 second audio clip plays and can be replayed an unlimited
-      number of times.
+- [ ] Given the tile page, when the participant presses play, then the
+      tile's audio clip plays and can be replayed an unlimited number of
+      times.
 - [ ] Given the free-text field, when the participant submits a guess that
       doesn't match the correct title or an accepted variant, then they
       see a generic "wrong, try again" message and can guess again
@@ -249,6 +249,9 @@ have something to guess.
       matching the correct title or any listed variant (per the round's
       matching strictness) counts as correct.
 
+*Note for admins:* clips are expected to be approx. 30–60 seconds (per
+the brief). The upload form shows this as guidance.
+
 **Status:** draft
 
 ### US-204 Publish a round
@@ -364,5 +367,8 @@ owner before they're final. Items for the product owner are marked
       penalties?
 - [ ] US-104: should tiles be numbered, as the brief describes ("a row of
       numbered tiles")?
+- [ ] Should clip length be enforced at upload (reject clips outside a
+      range, and with what tolerance), or stay as guidance only? The
+      brief says "approx. 30-60 seconds".
 - [ ] Password reset is not covered by any story. Should it be added, and
       how? **(PO decision)**
