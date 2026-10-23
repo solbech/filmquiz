@@ -313,8 +313,9 @@ scope.
 **Status:** draft
 
 ## Open Questions
-Items the product owner couldn't settle alone — need the actual customer's
-(the host's) input before they're final.
+Items that need input from the customer (Mogens, the host) or the product
+owner before they're final. Items for the product owner are marked
+**(PO decision)**; all others are for the customer.
 
 - [ ] "First finisher" — does this mean the participant who is literally
       first (by real clock time) to complete the round, or the
@@ -347,3 +348,21 @@ Items the product owner couldn't settle alone — need the actual customer's
       min/max duration)?
 - [ ] Can a participant change their nickname after signup, and must
       nicknames be unique?
+- [ ] US-106 shows only aggregate stats after a correct guess, but the
+      brief says Mogens liked seeing what others guessed. Should
+      participants also see other participants' guesses? Confirm with
+      Mogens.
+- [ ] The competitive layer (leaderboards, wrong-guess penalties,
+      launch/personal windows, first finisher, profile) comes from the
+      product-owner interview, not the brief. Confirm with Mogens before
+      building it.
+- [ ] US-202/203/204: must the number of added tiles match the configured
+      tile count before a round can be published? Define "fully
+      configured" for US-204.
+- [ ] US-205: when an accepted variant is added after participants have
+      played, do earlier wrong guesses that now match keep their
+      penalties?
+- [ ] US-104: should tiles be numbered, as the brief describes ("a row of
+      numbered tiles")?
+- [ ] Password reset is not covered by any story. Should it be added, and
+      how? **(PO decision)**
