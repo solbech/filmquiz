@@ -289,6 +289,20 @@ Items the product owner couldn't settle alone — need the actual customer's
       unavailable to new participants, or can anyone start any round at
       any point in the future and get their own personal window?
 - [ ] Can a round have more than one genre tag, or exactly one (or zero)?
+      Note: the docs currently disagree — US-202 says "an optional genre
+      tag" (zero or one), while the glossary's Round entry says "one or
+      more genre tags". Align both once decided.
+- [ ] How does the all-time leaderboard combine results across rounds?
+      Summing adjusted completion times would rank participants who have
+      completed more rounds lower, since every extra round adds time.
+      Options include average time per completed round, points per
+      placement in each round, or ranking first by rounds completed and
+      then by total time.
+- [ ] How do participants whose window ended before they finished appear
+      on leaderboards? Excluded entirely, or listed below all finishers
+      (e.g. by tiles solved, then time)? And does a round closed by reveal
+      or lock count as "completed" for the US-108 completion message or
+      the all-time leaderboard?
 - [ ] Should the app support Danish as well as English, given the host and
       likely participants are Danish-speaking?
 - [ ] Are there limits the host should not be able to exceed when
