@@ -26,6 +26,8 @@ The host creates and publishes content but does not control pacing.
 - `docs/plan/increments.md` — the vertical slices we're building, in order.
 - `docs/journal.md` — the product owner's observations on working with
   Claude on this project.
+- `docs/coach-instructions.md` — instructions for the claude.ai Project the
+  product owner uses as a learning coach (no file access; reads the repo).
 
 ## Working rules
 1. **Never start implementing without an approved plan.** Propose a plan,
