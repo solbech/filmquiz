@@ -113,9 +113,9 @@ that I can identify the movie.
 - [ ] Given an unsolved tile, when opened, then the participant sees a
       blurred cover (or a question-mark placeholder), a player, and a
       free-text answer field.
-- [ ] Given the tile page, when the participant presses play, then a
-      30-60 second audio clip plays and can be replayed an unlimited
-      number of times.
+- [ ] Given the tile page, when the participant presses play, then the
+      tile's audio clip plays and can be replayed an unlimited number of
+      times.
 - [ ] Given the free-text field, when the participant submits a guess that
       doesn't match the correct title or an accepted variant, then they
       see a generic "wrong, try again" message and can guess again
@@ -123,6 +123,8 @@ that I can identify the movie.
 - [ ] Given a wrong guess, then it is counted toward that participant's
       wrong-guess total for the round (used for the timing penalty and
       aggregate stats), even though it doesn't block further guessing.
+- [ ] Given an unsolved tile, then nothing delivered to the client reveals
+      its answer (see NFR-001).
 
 **Status:** draft
 
@@ -142,6 +144,9 @@ that I get confirmation and details.
       that tile: how many participants have guessed it correctly, and how
       many total wrong attempts have been made on it — not other
       participants' individual guessed text.
+- [ ] Given a guess, then correctness is decided server-side, and the
+      reveal data is delivered only in the response to a guess the server
+      verified as correct (see NFR-001).
 
 **Status:** draft
 
@@ -244,6 +249,9 @@ have something to guess.
       matching the correct title or any listed variant (per the round's
       matching strictness) counts as correct.
 
+*Note for admins:* clips are expected to be approx. 30–60 seconds (per
+the brief). The upload form shows this as guidance.
+
 **Status:** draft
 
 ### US-204 Publish a round
@@ -275,9 +283,42 @@ fix mistakes.
 
 **Status:** draft
 
+## Non-Functional Requirements
+
+### NFR-001 Answer secrecy
+The participant's client must never receive anything that reveals a
+tile's **answer** until that tile is solved by that participant (or
+revealed to them by round completion or reveal-on-close). "Answer" means
+the title, accepted variants, composer, premiere year, and original cover
+image. Answer checking happens server-side. Admin screens are out of
+scope.
+
+**Acceptance criteria**
+- [ ] Given an unsolved tile, then no participant-facing response (page
+      HTML, client code bundle, API response, asset URL, or HTTP header)
+      contains its title, any accepted variant, composer, year, or the
+      original cover's file name or URL.
+- [ ] Given an unsolved tile, then the cover the client receives is a
+      server-produced blurred image or a placeholder, not the original
+      image blurred in the browser.
+- [ ] Given an unsolved tile, then the original cover can only be
+      obtained through the response to a correct guess, or for a tile
+      already solved or revealed for that participant.
+- [ ] Given a tile's audio clip, then its URL and file name are opaque
+      identifiers, and the delivered file carries no embedded metadata
+      (e.g. ID3 title, album, artist, composer, comment, or cover art).
+- [ ] Given a submitted guess, then the server decides whether it is
+      correct; the client never receives the correct answer, the
+      variants, or any hash or encoded form of them for comparison.
+- [ ] Given a locked tile (lock-on-close), then the same rules apply as
+      for an unsolved tile.
+
+**Status:** draft
+
 ## Open Questions
-Items the product owner couldn't settle alone — need the actual customer's
-(the host's) input before they're final.
+Items that need input from the customer (Mogens, the host) or the product
+owner before they're final. Items for the product owner are marked
+**(PO decision)**; all others are for the customer.
 
 - [ ] "First finisher" — does this mean the participant who is literally
       first (by real clock time) to complete the round, or the
@@ -310,3 +351,24 @@ Items the product owner couldn't settle alone — need the actual customer's
       min/max duration)?
 - [ ] Can a participant change their nickname after signup, and must
       nicknames be unique?
+- [ ] US-106 shows only aggregate stats after a correct guess, but the
+      brief says Mogens liked seeing what others guessed. Should
+      participants also see other participants' guesses? Confirm with
+      Mogens.
+- [ ] The competitive layer (leaderboards, wrong-guess penalties,
+      launch/personal windows, first finisher, profile) comes from the
+      product-owner interview, not the brief. Confirm with Mogens before
+      building it.
+- [ ] US-202/203/204: must the number of added tiles match the configured
+      tile count before a round can be published? Define "fully
+      configured" for US-204.
+- [ ] US-205: when an accepted variant is added after participants have
+      played, do earlier wrong guesses that now match keep their
+      penalties?
+- [ ] US-104: should tiles be numbered, as the brief describes ("a row of
+      numbered tiles")?
+- [ ] Should clip length be enforced at upload (reject clips outside a
+      range, and with what tolerance), or stay as guidance only? The
+      brief says "approx. 30-60 seconds".
+- [ ] Password reset is not covered by any story. Should it be added, and
+      how? **(PO decision)**
